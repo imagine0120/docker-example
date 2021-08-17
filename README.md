@@ -36,12 +36,19 @@
      * 볼륨 : 컨테이너의 특정 파일 시스템 경로를 호스트 머신에 연결하고 파일을 저장하면, 컨테이너를 다시 시작해도 해당 파일을 볼 수 있음  
  
  3. todo 데이터 유지
-   * 볼륨 생성 후, 이를 컨테이너 내부의 디렉터리에 마운트
-   `docker volume create <volume-name> //볼륨 생성`
-   `docker run -dp <host-port>:<container-port> -v <volume-name>:<container-directory> <image-name>  
+     * 볼륨 생성 후, 이를 컨테이너 내부의 디렉터리에 마운트
+     `docker volume create <volume-name> //볼륨 생성`
+     `docker run -dp <host-port>:<container-port> -v <volume-name>:<container-directory> <image-name>  
   
  4.  볼륨 자세히 살펴보기
-   * docker volume inspect <volume-name> : 볼륨 데이터 저장 경로 등 확인 가능
+     * docker volume inspect <volume-name> : 볼륨 데이터 저장 경로 등 확인 가능
  
 ### 5부 : 바인드 탑재 사용
- 
+ 1. 볼륨 유형 빠른 비교  
+  
+| 속성 | 명명된 볼륨 | 바인딩 마운트  |
+|---|:-:|:-:|
+| 호스트 위치 | Docker 선택 | 바인딩 마운트 |
+| 탑재 예시 | v1:/usr/local/data  | /path/to/data:/usr/local/data  |
+|  새 볼륨에 컨테이너 내용 채움 | Y  |  Y |
+|  볼륨 드라이버 지원 | Y  |  Y |
