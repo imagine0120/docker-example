@@ -52,3 +52,5 @@
 | 탑재 예시 | v1:/usr/local/data  | /path/to/data:/usr/local/data  |
 |  새 볼륨에 컨테이너 내용 채움 | Y  |  Y |
 |  볼륨 드라이버 지원 | Y  |  Y |
+
+  
