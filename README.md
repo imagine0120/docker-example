@@ -37,8 +37,8 @@
  
  3. todo 데이터 유지
      * 볼륨 생성 후, 이를 컨테이너 내부의 디렉터리에 마운트
-     `docker volume create <volume-name> //볼륨 생성`
-     `docker run -dp <host-port>:<container-port> -v <volume-name>:<container-directory> <image-name>  
+     `docker volume create <volume-name> //볼륨 생성`  
+     `docker run -dp <host-port>:<container-port> -v <volume-name>:<container-directory> <image-name>`  
   
  4.  볼륨 자세히 살펴보기
      * docker volume inspect <volume-name> : 볼륨 데이터 저장 경로 등 확인 가능
