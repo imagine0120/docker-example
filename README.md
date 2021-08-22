@@ -78,7 +78,21 @@
   1. Docker Compose 설치
       * Docker Compose란 다중 컨테이너 애플리케이션을 정의하고 공유하는 툴로, Docker Desktop과 함께 자동으로 설치됨
       * yml 파일로 컨테이너 모두 실행/종료 및 버전 관리 가능
+      * port, db, env 등 관련 설정을 미리 정의하여 컨테이너 실행을 용이하게 해주는 역할
   2. Compose 파일 만들기
       * 앱 프로젝트 루트에 docker-compose.yml 생성
       * `version: "3.7"` : 스키마 버전 정의
-      * 
+      * `services: app: image: node:12-alpine` : 사용할 이미지 지정
+      * `command: sh -c "yarn install && yarn run dev"` : 컨테이너 실행 후, Dockerfile에 지정된 CMD를 무시하고 실행할 명령어 정의
+      * `working_dir: /app` : docker-compose는 현재 디렉터리의 상대경로 사용 가능
+      * `volumes: - ./:/app` : 볼륨 매핑( = ${PWD}:/app)
+      * `environment: ~` : 환경변수 설정
+      * `docker-compose logs -f (<app-name>(optional))` : 앱 이름을 지정하여 실시간(-f) 로그 확인
+
+### 9부 : 이미지 빌드 모범 사례
+  1. 이미지 계층화
+      * `docker image history <image-name>` : 이미지 각 계층을 만드는 데 사용된 명령 확인
+  2. 계층 캐싱
+      * 종속성 설치 : 컨테이너를 실행할 때마다 'yarn install'로 종속성 설치 -> 비효율적
+      * pacakage.json : 노드 기반 app은 이를 통해 종속성 정의. 이를 먼저 복사하여 종속성 설치 후 다른 항목을 복사한다면, **package.json이 변경된 경우에만 yarn 종속성을 재설치**하면 됨
+  
